@@ -23,10 +23,9 @@ trabajar con base de datos de una manera sencilla.*
     *Estructura:*
     
     * users 
-       * id(11): Integer, AutoIncrement
+       * id(11): Int, AutoIncrement
        * name(40): Varchar, NOTNULL
-       * created_at: Timestamp
-       * updated_at: Timestamp
+       * edad(2): Int
     
   #### Obtener registos de la tabla users
   
@@ -51,21 +50,36 @@ trabajar con base de datos de una manera sencilla.*
    'Tambien podemos utilizar la sentencia WHERE con sus respectivas condiciones logicas como AND y OR
    'para poder ulilizar existen 2 metodos, los cuales son where y orWhere
    db.table("users").where("id", 1).gets()
+   'O También
+   db.table("users").where("id", "<>", 1).selects({"id"}).gets()
+   
+   'Where AND
+   db.table("users").where("name", "hans").where("edad", 19).gets()
+   
+   
+   'Where OR
+   db.table("users").where("name", "hans").orWhere("edad", 19).gets()
 
 ```
      
   ##### SQL
 ```sql
 
-  SELECT * FROM users; // all()
+  SELECT * FROM users; #all()
   
-  SELECT * FROM users; // gets()
+  SELECT * FROM users; #gets()
    
-  SELECT id FROM users; // gets(params)
+  SELECT id FROM users; #gets(params)
      
-  SELECT name descripcion FROM users; //  selects(params).gets()
+  SELECT name descripcion FROM users; #selects(params).gets()
     
-   SELECT 
+  SELECT * FROM users WHERE id='1'  #where(params).gets()
+  
+  SELECT id FROM users WHERE id<>'1'  #where(params).selects(params).gets()
+  
+  SELECT * FROM users WHERE name='hans' AND edad='19' #where(params).where(params).gets()
+  
+  SELECT * FROM users WHERE name='hans' OR edad='19' #where(params).orWhere(params).gets()
 ```
   #### Insertar un registro a la tabla "users"
     
@@ -127,6 +141,18 @@ trabajar con base de datos de una manera sencilla.*
 ```sql
   DELETE FROM users WHERE id='1'
 ```
+
+
+### Todos los metodos de la clase DB
+
+
+| Nombre                  | Parametros          |  Descripción                  | Tipo de dato   |
+| :---------------------: | :-----------------: |:-----------------------------:|:--------------:|
+| table()                 |  t as Object        | configurar nombre de la tabla | DB
+
+
+
+
      
   
 created by : ***Hans Medina*** <br/>

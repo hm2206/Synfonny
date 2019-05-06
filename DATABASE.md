@@ -216,7 +216,7 @@ End Class
 Public Class Item
     Inherits Model
 
-    'Es necesario crear un constructor y realizar los SETTING dentro de el
+    'Es necesario crear un constructor y realizar los SETTING dentro de él
     Sub New()
         Me.setTable("articulo") 'Aquí se renombra la tabla de manera manual
     End Sub
@@ -306,5 +306,154 @@ modificando la consulta antes de ser ejecutada.*
   SELECT * FROM items WHERE descripcion='coffee' AND id='1' # where(params).where(params)gets()
 ```
 
+##### Crear Registros
+
+*Para crear registros con la clase ***Model*** solo se debe utilizar el metodo **create***
+
+##### Información del Metodo *create*
+*El metodo **create(att() As Object, val() As Object)** recibe 2 parametros:* <br/>
+***attr() as Object** : acá se recibe los atributos de la tabla <br/>
+***val() as Object**: acá se recibe los valores que serán insertados en los **attr*** <br/>
+*El metodo **create(params)** retorna un **Boolean**, True si la operación es exitosa y **False** hubo algún problema*
+
+*Ejemplo: (Utilizaremos la clase **Item**, el cual hereda la clase **Model**)*
+
+
+##### VB
+```vb
+
+  Dim item As New Item()
+  
+  item.create({"descripcion"}, {"coffee"})
+
+```
+
+##### SQL
+```sql
+  INSERT INTO items(descripcion) VALUES("coffee")
+```
+
+ #### Actualizar uno o varios registro de la tabla "items"
+  
+  *Para actualizar un registro, **Model** te proporciona el metodo **update** el cual
+  retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
+  recibe 2 parametros:* <br/>
+  ***update(attr() As Object, val() as Object)*** <br/>
+  ***attr()*** *hace referencia a los atributos que serán actualizados <br/>
+  ***val()*** *son los valor que **attr()** tomará para actualizar*
+  ##### VB
+```vb
+
+  Dim item As New Item() 'instanciamos la clase Item
+  
+  'Esta consulta actualizará todos los registros de la tabla users
+  item.update({"descripcion"}, {"cocacola"})
+  
+  'Esta consulta actualizará solo el o los registros según la condición
+  item.where("id", 1).update({"descipcion"}, {"cocacola"})
+
+```
+     
+  ##### SQL
+```sql
+  UPDATE items SET descripcion='cocacola' # update(params)
+  
+  UPDATE items SET descripcion='cocacola' WHERE id='1' # where(params).update(params)
+```
+ 
+  #### Eliminar registros de la tabla "items"
+ 
+  _Para eliminar registros, ***Model*** te proporciona el metodo ***delete*** el cual
+  retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
+  recibe 2 parametros:_ <br/>
+  ***delete()*** <br/>
+ 
+  ##### VB
+```vb
+  
+  Dim item As New Item() 'instanciamos la clase Item
+  
+  'Esta consulta eliminará todos los registros
+  item.delete()
+  
+  'Esta consulta eliminará los resgistros según la condición
+  item.where("id", 1).delete()
+  
+```
+     
+  ##### SQL
+```sql
+  DELETE FROM items # delete()
+
+  DELETE FROM items WHERE id='1' # where(params).delete()
+```
+
+
+#### Obtener un solo registro de la tabla "items"
+
+*Para poder realizar esta operación, Las Clases heredadas de "***Model***" cuentán con el metodo **find() y first()*** <br/>
+*Ambos metodos retorna un objecto **Map** el cual trae metodos como: **update**, **delete**, **item** y **source*** <br/>
+*Los cuales se encargan de actualizar(**update**) y eliminar(**delete**) el registro actualmente obtenido.* <br/>
+*También es posible obtener un objeto **DataTable** con el metodo **source*** <br/>
+*Ahora con el metodo **item** es posible obtener el valor del campo de la tabla. Ejem: ` item.item("id") `* </br>
+
+
+*Ejemplos
+
+##### VB
+```vb
+'Instanciamos una clase Item
+ Dim item As New Item() 
+ 
+ 'Creamos una variable de tipo Map
+ Dim itemMap as Map 
+ 
+ 'Obtenemos un objecto Map con el metodo find(id)
+ itemMap = item.find(1)
+ 'OUTPUT SELECT * FROM items WHERE id = '1'
+ 
+ 'Obtenemos un objecto Map con el metodo first
+ itemMap = item.first
+ 'OUTPUT SELECT * FROM items LIMIT 1
+ 
+ 'Ahora madaremos un mensage con el metodo MsgBox y el metodo item
+ MsgBox(itemMap.item("descripcion"))
+ 'OUTPUT ! coffee !
+ 
+ 'Ahora Seteamos una grilla con los datos obtenidos
+ me.myDataGridView.DataSource = itemMap.source()
+ 
+ 'Ahora actualizamos el registro actual
+ itemMap.update({"descripcion"}, {"fanta"})
+ 'OUTPUT UPDATE items SET descripcion='fanta' WHERE id='1'
+ 
+ 'Ahora eliminaremos el registro actual
+ itemMap.delete()
+ 'OUTPUT DELETE FROM items WHERE descripcion='1'
+
+```
+
+### Todos los metodos de la clase Model
+
+
+| Nombre                  | Parametros          |  Descripción                  | Tipo de dato   |
+| :---------------------: | :-----------------: |:-----------------------------:|:--------------:|
+| selects()               | attr() As Object    | configura los atributos de la consulta SQL | Model|
+| limite()                | valor As Object     | agregar LIMIT {valor} a la consulta SQL | Model   |
+| limite()                | valor1 As Object, valor2 as Object | agregar LIMIT {valor1}, {valor2} a la consulta SQL | Model |
+| where()                 | val1 As Object, signo As Object, val2 As Object | Agrega un Where o AND a la consulta SQL | Model |
+| where()                 | val1 As Object, val2 As Object | Agrega un Where o AND a la consulta SQL, pero con el operador lógico de "**=**" | Model |
+| orWhere()               | val1 As Object, signo As Object, val2 As Object | Agrega un Where o OR a la consulta SQL | Model |
+| orWhere()               | val1 As Object, val2 As Object | Agrega un Where o OR a la consulta SQL, pero con el operador lógico de "**=**" | Model |
+| create()                | attr() As Object, val() As Object | genera y ejecuta la consulta INSERT INTO | DataTable |
+| all()                   | NULL               | genera y ejecuta una consulta SELECT {attr} FROM {table} | DataTable |
+| find()                  | id As Object       | genera y ejecuta una consulta SELECT {attr} FROM {table} WHERE {primaryKey}='{id}' | Map |
+| first()                 | NULL               | genera y ejecuta una consulta SELECT {attr} FROM {table} LIMIT 1 | Map |
+| update()                | attr() As Object, val() As Object | genera y ejecuta la consulta UPDATE {table} SET {...params} | Boolean |
+| delete()                | NULL               | genera y ejecuta la consulta DELETE FROM {table} | Boolean |
+| gets()                  | NULL               | genera y ejecuta una consulta SELECT * FROM {table} | DataTable |
+| gets()                  | attr() As Object   | genera y ejecuta una consulta SELECT {attr} FROM {table} | DataTable |
+
 
 - [Synfonny](https://github.com/jocker2206/Synfonny/)
+ 

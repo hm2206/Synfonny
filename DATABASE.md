@@ -153,6 +153,9 @@
 | limite()                | valor As Object     | agregar LIMIT {valor} a la consulta SQL | DB   |
 | limite()                | valor1 As Object, valor2 as Object | agregar LIMIT {valor1}, {valor2} a la consulta SQL | DB   |
 | join()                  | t2 As Object, val1 As Object, val2 As Object | Agrega un INNER JOIN a la consulta SQL | DB |
+| innerJoin()             | t2 As Object, val1 As Object, val2 As Object | Agrega un INNER JOIN a la consulta SQL | DB |
+| leftJoin()              | t2 As Object, val1 As Object, val2 As Object | Agrega un LEFT JOIN a la consulta SQL | DB |
+| rightJoin()             | t2 As Object, val1 As Object, val2 As Object | Agrega un RIGHT JOIN a la consulta SQL | DB |
 | where()                 | val1 As Object, signo As Object, val2 As Object | Agrega un Where o AND a la consulta SQL | DB |
 | where()                 | val1 As Object, val2 As Object | Agrega un Where o AND a la consulta SQL, pero con el operador lógico de "**=**" | DB |
 | orWhere()               | val1 As Object, signo As Object, val2 As Object | Agrega un Where o OR a la consulta SQL | DB |

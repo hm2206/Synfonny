@@ -2,7 +2,7 @@
 *Framework  VB for Desktop*
 
 *Crea aplicaciones de escritorio de una manera rápida y sencilla.
-Preocupate por el diseño que #Synfonny te provee herramientas para 
+Preocupate por el diseño que **Synfonny** te provee herramientas para 
 trabajar con base de datos de una manera sencilla.*
 
 

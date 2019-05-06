@@ -32,12 +32,6 @@ trabajar con base de datos de una manera sencilla.*
   
   _Generamos la consulta para mostrar todos los registros de la tabla "users" <br/> 
   Con los metodos **all()** y **gets** los cuales retornan un **DataTable**_
-  
-```vb
- 
-  Dim o As Object
-
-```
   ##### VB
      
 ```vb

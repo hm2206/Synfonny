@@ -3,9 +3,13 @@
 
 ### Base de Datos
   
-  * **Clase DB** : Esta clase nos permite realizar consultas sql
+  * **Utilizando la clase DB**
     
     *Ejemplo:*
+    
+    ```vb
+      Dim db as new DB()
+    ```
     
     *Primero creamos la Base de datos "prueba" y despues la tabla "users"*
     
@@ -169,6 +173,138 @@
 | gets()                  | attr() As Object   | genera y ejecuta una consulta SELECT {attr} FROM {table} | DataTable |
 
 
-***Clase Relacionada***
+* **Utilizando la Clase Model**
 
-- [ORM MODEL](https://github.com/jocker2206/Synfonny/blob/master/Model.md)
+*Para comenzar a utilizar la Clase **Model** usted debe seguir varias reglas*
+
+1. Debe crear una Clase en **VB** con el nombre en singular(***Item.vb***) en la ruta ``` ./app/models/Item.vb ```
+2. Crear tabla pero en plural(***items***) con 2 atributos obligatorios: **created_at y updated_at** de tipo  **timestamp**
+```sql
+  # Items
+  
+  CREATE TABLE items(
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(40),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+  )
+  
+```
+3. A la clase creada(***Item***), se le debe de heredar la clase "***Model***" Ejemplo:
+
+#### Item.vb
+```vb  
+
+Public Class Item
+    Inherits Model
+
+End Class
+
+```
+
+4. Guardar cambios y manos a la obra 
+
+##### Información de Model
+* La clase ***Model***, resuelve el nombre de la tabla de la siguiente manera:
+* Model toma el nombre de la clase instanciada(***Item***) y luego lo convierte en plural.
+* También es posible ingresar el nombre de la tabla de manera manual, eso es posible gracias al metodo **setTable()**
+
+```vb
+  
+   'Item.vb
+   
+Public Class Item
+    Inherits Model
+
+    'Es necesario crear un constructor y realizar los SETTING dentro de el
+    Sub New()
+        Me.setTable("articulo") 'Aquí se renombra la tabla de manera manual
+    End Sub
+
+End Class
+   
+  
+```
+
+* Por norma de la clase **Model**, esta espera que como llave primaria de la tabla, sea ``` id ``` de caso contrario, la consulta no se realizarán como se esperba
+* También es posible configurar el nombre de la llave primaria, para hacerlo solo se debe agregar un atributo publico con en nombre de ***primaryKey*** y con un valor inicial
+```vb
+  
+   'Item.vb
+   
+Public Class Item
+    Inherits Model
+    
+    Public primaryKey As Object = "articulo_id"
+
+    'Es necesario crear un constructor y realizar los SETTING dentro de el
+    Sub New()
+        Me.setTable("articulo") 'Aquí se renombra la tabla de manera manual
+    End Sub
+
+End Class
+   
+  
+```
+
+
+##### Obtener Registos
+
+*Para poder realizar esta operación, Las Clases heredadas de "***Model***" cuentán con el metodo **all() y gets()*** <br/>
+*Más adelante veremos otras maneras de realizar dicha operación
+
+###### Información
+*Los metodos ***all() y gets()*** retornan un Objeto **DataTable** .* <br/>
+*También están disponibles los metodos ***where*** , ***orWhere*** y ***selects*** los cuales funcionan igual,
+modificando la consulta antes de ser ejecutada.*
+*Para mayor información de los metodos ***where*** , ***orWhere*** y ***selects***, revisar la documentación de la clase **DB**
+
+*Ejemplo: Obtener registos y pasarlo a una grilla(**DataGridView**)
+
+##### VB
+```vb
+  Dim item As New Item() 'Instanciamos la clase Item
+  
+  'obtener todos los registos con el metodo all()
+  Me.myDataGridView.DataSource = item.all()
+  
+  'obtener todos los registos con el metodo gets()
+  Me.myDataGridView.DataSource = item.gets()
+  
+  'obtener todos los registos con el metodo gets(params)
+  Me.myDataGridView.DataSource = item.gets({"descripcion"})
+  
+  'obtener todos los registos con el metodo where y gets(params)
+  Me.myDataGridView.DataSource = item.where("descripcion", "coffee").gets({"descripcion"})
+  
+  'obtener todos los registos con el metodo where, selects y gets
+  Me.myDataGridView.DataSource = item.where("descripcion", "coffee").selects({"descripcion"}).gets()
+  
+  'obtener todos los registos con el metodo where, orWhere y gets
+  Me.myDataGridView.DataSource = item.where("descripcion", "coffee").orWhere("id", "1").gets()
+  
+  'obtener todos los registos con el metodo where y gets
+  Me.myDataGridView.DataSource = item.where("descripcion", "coffee").where("id", "1").gets()
+  
+```
+
+##### SQL
+
+```sql
+  SELECT * FROM items # all()
+  
+  SELECT * FROM items # gets()
+  
+  SELECT descripcion FROM items # gets(params)
+  
+  SELECT descripcion FROM items WHERE descripcion='coffee' # where(params).gets(params)
+  
+  SELECT descripcion FROM items WHERE descripcion='coffee' # where(params).selects(params)gets()
+  
+  SELECT * FROM items WHERE descripcion='coffee' OR id='1' # where(params).orWhere(params)gets()
+  
+  SELECT * FROM items WHERE descripcion='coffee' AND id='1' # where(params).where(params)gets()
+```
+
+
+- [Synfonny](https://github.com/jocker2206/Synfonny/)

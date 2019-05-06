@@ -1,9 +1,9 @@
 # Synfonny
-*Framework  VB for Desktop
+*Framework  VB for Desktop*
 
-Crea aplicaciones de escritorio de una manera rapida y sencilla
+*Crea aplicaciones de escritorio de una manera rapida y sencilla
 Preocupate por el diseño que #Synfonny te provee herramientas para 
-trabajar con base de datos de una manera sencilla.
+trabajar con base de datos de una manera sencilla.*
 
 
 ## Herramientas
@@ -46,11 +46,12 @@ trabajar con base de datos de una manera sencilla.
   #### SQL
     1. INSERT INTO users(name, created_at, updated_at) VALUES("Hans", NOW, NOW)
      
-  ##### Actualizar uno o varios registro de la table "users"
+  ##### Actualizar uno o varios registro de la tabla "users"
   
-  *Para actualizar un registro, **DB** te proporciona el metodo **updateBy** en cual
+  *Para actualizar un registro, **DB** te proporciona el metodo **updateBy** el cual
+  retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
   recibe 4 parametros:* <br/>
-  ***updateBy(row as Object, id as Object, attr() as Object, val() as Object)*** <br/>
+  ***updateBy(row as Object, id As Object, attr() As Object, val() as Object)*** <br/>
   ***row:*** *hace referencia al atributo de la tabla* <br/>
   ***id:*** *hace referencia a la condición. el cual es tomado así.* **row = id** <br/>
   ***attr()*** *hace referencia a los atributos que serán actualizados <br/>
@@ -61,7 +62,14 @@ trabajar con base de datos de una manera sencilla.
      3. db.updateBy("id", 1, {"name"}, {"Lorenz"})
      
   #### SQL
-     1. UPDATE users SET name='Lorenz'
+     1. UPDATE users SET name='Lorenz' WHERE id='1'
+ 
+  ##### Eliminar registros de la tabla "users"
+ 
+  _Para eliminar registros, ***DB*** te proporciona el metodo ***deleteBy*** el cual
+  retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
+  recibe 2 parametros:_ <br/>
+  ***deleteBy(row As Object, id As Object)*** 
  
   
   

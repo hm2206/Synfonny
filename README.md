@@ -6,7 +6,7 @@ Preocupate por el diseño que #Synfonny te provee herramientas para
 trabajar con base de datos de una manera sencilla.*
 
 
-## GET STARTED
+#### GET STARTED
   
   - ***INSTALACIÓN***
   - ***BASE DE DATOS***

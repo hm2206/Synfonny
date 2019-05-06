@@ -71,7 +71,7 @@ trabajar con base de datos de una manera sencilla.*
    
   SELECT id FROM users; #gets(params)
      
-  SELECT name descripcion FROM users; #selects(params).gets()
+  SELECT name, descripcion FROM users; #selects(params).gets()
     
   SELECT * FROM users WHERE id='1'  #where(params).gets()
   
@@ -175,12 +175,8 @@ trabajar con base de datos de una manera sencilla.*
 | gets()                  | attr() As Object   | genera y ejecuta una consulta SELECT {attr} FROM {table} | DataTable |
 
 
+[MODEL ->](http://github.com)
 
-
-
-
-
-        
   
 created by : ***Hans Medina*** <br/>
 email: ***twd2206@gmail.com***

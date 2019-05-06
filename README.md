@@ -175,7 +175,10 @@ trabajar con base de datos de una manera sencilla.*
 | gets()                  | attr() As Object   | genera y ejecuta una consulta SELECT {attr} FROM {table} | DataTable |
 
 
-[MODEL ->](http://github.com)
+
+***Clase Relacionada***
+
+- [ORM MODEL](https://github.com/jocker2206/Synfonny/blob/master/Model.md)
 
   
 created by : ***Hans Medina*** <br/>

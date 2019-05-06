@@ -26,17 +26,17 @@ trabajar con base de datos de una manera sencilla.
        * created_at
        * updated_at
     
-  ###### Creamos un objeto de Tipo DB 
-     1. Dim db as new DB()
+  ##### Obtener registos de la tabla users
   
-  ###### Generamos la consulta para mostrar todos los registros de la tabla "users", allBy genera el SELECT * From... 
+  *Generamos la consulta para mostrar todos los registros de la tabla "users", allBy genera el SELECT * From...*
   #### VB
+     1. Dim db As New DB()
      2. db.table("users").allBy()
      
   #### SQL
      1. SELECT * FROM users
 
-  ###### Insertar un registro a la tabla "users"
+  ##### Insertar un registro a la tabla "users"
     
   *created_at y updated_at, son insertados automaticamente y createBy genera la consulta de insert into*
   #### VB
@@ -46,7 +46,7 @@ trabajar con base de datos de una manera sencilla.
   #### SQL
     1. INSERT INTO users(name, created_at, updated_at) VALUES("Hans", NOW, NOW)
      
-  ###### Actualizar uno o varios registro de la table "users"
+  ##### Actualizar uno o varios registro de la table "users"
   
   *Para actualizar un registro, **DB** te proporciona el metodo **updateBy** en cual
   recibe 4 parametros:* <br/>
@@ -57,12 +57,8 @@ trabajar con base de datos de una manera sencilla.
   ***val()*** *son los valor que **attr()** tomará para actualizar*
   #### VB
      1. Dim db As New DB() 'instanciamos la clase DB
-     2. 'PRIMERA MANERA
-     3. db.table("users") 'definimos la tabla
-     4. db.updateBy("id", 1, {"name"}, {"Lorenz"}) 'realizamos la actualización
-     5.
-     6. 'SEGUNDA MANERA
-     7. db.table("users").updateBy("id", 1, {"name"}, {"Lorenz"})
+     2. db.table("users")
+     3. db.updateBy("id", 1, {"name"}, {"Lorenz"})
      
   #### SQL
      1. UPDATE users SET name='Lorenz'

@@ -83,18 +83,18 @@ trabajar con base de datos de una manera sencilla.*
 ```
   #### Insertar un registro a la tabla "users"
     
-  *created_at y updated_at, son insertados automaticamente y createBy genera la consulta de insert into*
+  *Para insertar datos a una tabla, **DB** te proporciona el metodo **create()** el cual genera la consulta SQL y la ejecuta*
   ##### VB
 ```vb
 
   Dim db As New DB()
-  db.table("users").create({"name"}, {"Hans"})
+  db.table("users").create({"name", "edad"}, {"Hans", 19})
 
 ```
     
   ##### SQL
 ```sql
-  INSERT INTO users(name, created_at, updated_at) VALUES("Hans", NOW, NOW)
+  INSERT INTO users(name, edad) VALUES("Hans", 19)
 ```
      
   #### Actualizar uno o varios registro de la tabla "users"
@@ -109,37 +109,47 @@ trabajar con base de datos de una manera sencilla.*
 ```vb
 
   Dim db As New DB() 'instanciamos la clase DB
-  db.table("users")
-  db.updateBy("id", 1, {"name"}, {"Lorenz"})
+  
+  'Esta consulta actualizará todos los registros de la tabla users
+  db.table("users").update({"name"}, {"Lorenz"})
+  
+  'Esta consulta actualizará solo el o los registros según la condición
+  db.table("users").where("id", 1).update({"name"}, {"Lorenz"})
 
 ```
      
   ##### SQL
 ```sql
-  UPDATE users SET name='Lorenz' WHERE id='1'
+  UPDATE users SET name='Lorenz' # update(params)
+  
+  UPDATE users SET name='Lorenz' WHERE id='1' # where(params).update(params)
 ```
  
   #### Eliminar registros de la tabla "users"
  
-  _Para eliminar registros, ***DB*** te proporciona el metodo ***deleteBy*** el cual
+  _Para eliminar registros, ***DB*** te proporciona el metodo ***delete*** el cual
   retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
   recibe 2 parametros:_ <br/>
-  ***deleteBy(row As Object, id As Object)*** <br/>
-  ***row:*** *hace referencia al atributo de la tabla* <br/>
-  ***id:*** *hace referencia a la condición. el cual es tomado así.* **row = id** <br/>
+  ***delete()*** <br/>
  
   ##### VB
 ```vb
   
   Dim db As New DB() 'instanciamos la clase DB
-  db.table("users")
-  db.deleteBy("id", 1)
-
+  
+  'Esta consulta eliminará todos los registros
+  db.table("users").delete()
+  
+  'Esta consulta eliminará los resgistros según la condición
+  db.table("users").where("id", 1).delete()
+  
 ```
      
   ##### SQL
 ```sql
-  DELETE FROM users WHERE id='1'
+  DELETE FROM users # delete()
+
+  DELETE FROM users WHERE id='1' # where(params).delete()
 ```
 
 
@@ -148,12 +158,29 @@ trabajar con base de datos de una manera sencilla.*
 
 | Nombre                  | Parametros          |  Descripción                  | Tipo de dato   |
 | :---------------------: | :-----------------: |:-----------------------------:|:--------------:|
-| table()                 |  t as Object        | configurar nombre de la tabla | DB
+| table()                 |  t As Object        | configurar nombre de la tabla | DB             |
+| selects()               | attr() As Object    | configura los atributos de la consulta SQL | DB|
+| selectConcat()          | attr() As Object    | agregar más atributos a la consulta SQL | DB   |
+| join()                  | t2 As Object, val1 As Object, val2 As Object | Agrega un INNER JOIN a la consulta SQL | DB |
+| where()                 | val1 As Object, signo As Object, val2 As Object | Agrega un Where o AND a la consulta SQL | DB |
+| where()                 | val1 As Object, val2 As Object | Agrega un Where o AND a la consulta SQL, pero con el operador lógico de "**=**" | DB |
+| orWhere()               | val1 As Object, signo As Object, val2 As Object | Agrega un Where o OR a la consulta SQL | DB |
+| orWhere()               | val1 As Object, val2 As Object | Agrega un Where o OR a la consulta SQL, pero con el operador lógico de "**=**" | DB |
+| create()                | attr() As Object, val() As Object | genera y ejecuta la consulta INSERT INTO | DataTable |
+| update()                | attr() As Object, val() As Object | genera y ejecuta la consulta UPDATE {table} SET {...params} | Boolean |
+| delete()                | NULL               | genera y ejecuta la consulta DELETE FROM {table} | Boolean |
+| rawReturn()             | sql As Object      | genera y ejecuta una consulta RAW(cualquiera) | DataTable |
+| raw()                   | sql As Object      | genera y ejecuta una consulta RAW(cualquiera) | Boolean   |
+| gets()                  | NULL               | genera y ejecuta una consulta SELECT * FROM {table} | DataTable |
+| gets()                  | attr() As Object   | genera y ejecuta una consulta SELECT {attr} FROM {table} | DataTable |
 
 
 
 
-     
+
+
+
+        
   
 created by : ***Hans Medina*** <br/>
 email: ***twd2206@gmail.com***

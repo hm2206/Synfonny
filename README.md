@@ -33,7 +33,7 @@ trabajar con base de datos de una manera sencilla.*
   _Generamos la consulta para mostrar todos los registros de la tabla "users" <br/> 
   Con los metodos **all()** y **gets** los cuales retornan un **DataTable**_
   
- ```vb
+```vb
  
   Dim o As Object
 
@@ -85,7 +85,7 @@ trabajar con base de datos de una manera sencilla.*
 ```
     
   ##### SQL
-````sql
+```sql
   INSERT INTO users(name, created_at, updated_at) VALUES("Hans", NOW, NOW)
 ```
      
@@ -107,7 +107,7 @@ trabajar con base de datos de una manera sencilla.*
 ```
      
   ##### SQL
-````sql
+```sql
   UPDATE users SET name='Lorenz' WHERE id='1'
 ```
  

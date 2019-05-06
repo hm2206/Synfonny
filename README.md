@@ -9,7 +9,7 @@ trabajar con base de datos de una manera sencilla.*
 ## GET STARTED
   
   - ***INSTALACIÓN***
-  - ***[BASE DE DATOS](https://github.com/jocker2206/Synfonny/edit/master/DATABASE.md)***
+  - ***[BASE DE DATOS](https://github.com/jocker2206/Synfonny/blob/master/DATABASE.md)***
   
   
  ### Instalación

@@ -150,6 +150,8 @@
 | table()                 |  t As Object        | configurar nombre de la tabla | DB             |
 | selects()               | attr() As Object    | configura los atributos de la consulta SQL | DB|
 | selectConcat()          | attr() As Object    | agregar más atributos a la consulta SQL | DB   |
+| limite()                | valor As Object     | agregar LIMIT {valor} a la consulta SQL | DB   |
+| limite()                | valor1 As Object, valor2 as Object | agregar LIMIT {valor1}, {valor2} a la consulta SQL | DB   |
 | join()                  | t2 As Object, val1 As Object, val2 As Object | Agrega un INNER JOIN a la consulta SQL | DB |
 | where()                 | val1 As Object, signo As Object, val2 As Object | Agrega un Where o AND a la consulta SQL | DB |
 | where()                 | val1 As Object, val2 As Object | Agrega un Where o AND a la consulta SQL, pero con el operador lógico de "**=**" | DB |
@@ -162,7 +164,6 @@
 | raw()                   | sql As Object      | genera y ejecuta una consulta RAW(cualquiera) | Boolean   |
 | gets()                  | NULL               | genera y ejecuta una consulta SELECT * FROM {table} | DataTable |
 | gets()                  | attr() As Object   | genera y ejecuta una consulta SELECT {attr} FROM {table} | DataTable |
-
 
 
 ***Clase Relacionada***

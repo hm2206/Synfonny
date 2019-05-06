@@ -23,48 +23,93 @@ trabajar con base de datos de una manera sencilla.*
     *Estructura:*
     
     * users 
-       * id: Integer|PrimaryKey|AutoIncrement|Max:11
-       * name: Varchar|NotNull|Max:55
+       * id(11): Integer, AutoIncrement
+       * name(40): Varchar, NOTNULL
        * created_at: Timestamp
        * updated_at: Timestamp
     
   #### Obtener registos de la tabla users
   
-  *Generamos la consulta para mostrar todos los registros de la tabla "users", allBy genera el SELECT * From...*
+  _Generamos la consulta para mostrar todos los registros de la tabla "users" <br/> 
+  Con los metodos **all()** y **gets** los cuales retornan un **DataTable**_
+  
+ ```vb
+ 
+  Dim o As Object
+
+```
   ##### VB
-     1. Dim db As New DB()
-     2. db.table("users").allBy()
+     
+```vb
+
+   Dim db As New DB()
+   db.table("users").all()
+  
+   'Tambien se puede de esta manera
+   db.table("users").gets()
+   
+   'Tambien se puede definir que atributos se va ha obtener
+   db.table("users").gets({"id"})
+     
+   'Tambien se puede de esta manera
+   db.table("users").selects({"name"}).gets()
+     
+   'Tambien podemos utilizar la sentencia WHERE con sus respectivas condiciones logicas como AND y OR
+   'para poder ulilizar existen 2 metodos, los cuales son where y orWhere
+   db.table("users").where("id", 1).gets()
+
+```
      
   ##### SQL
-     1. SELECT * FROM users
+```sql
 
+  SELECT * FROM users; // all()
+  
+  SELECT * FROM users; // gets()
+   
+  SELECT id FROM users; // gets(params)
+     
+  SELECT name descripcion FROM users; //  selects(params).gets()
+    
+   SELECT 
+```
   #### Insertar un registro a la tabla "users"
     
   *created_at y updated_at, son insertados automaticamente y createBy genera la consulta de insert into*
   ##### VB
-    1. Dim db As New DB()
-    2. db.table("users").createBy({"name"}, {"Hans"})
+```vb
+
+  Dim db As New DB()
+  db.table("users").create({"name"}, {"Hans"})
+
+```
     
   ##### SQL
-    1. INSERT INTO users(name, created_at, updated_at) VALUES("Hans", NOW, NOW)
+````sql
+  INSERT INTO users(name, created_at, updated_at) VALUES("Hans", NOW, NOW)
+```
      
   #### Actualizar uno o varios registro de la tabla "users"
   
-  *Para actualizar un registro, **DB** te proporciona el metodo **updateBy** el cual
+  *Para actualizar un registro, **DB** te proporciona el metodo **update** el cual
   retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
-  recibe 4 parametros:* <br/>
-  ***updateBy(row as Object, id As Object, attr() As Object, val() as Object)*** <br/>
-  ***row:*** *hace referencia al atributo de la tabla* <br/>
-  ***id:*** *hace referencia a la condición. el cual es tomado así.* **row = id** <br/>
+  recibe 2 parametros:* <br/>
+  ***update(attr() As Object, val() as Object)*** <br/>
   ***attr()*** *hace referencia a los atributos que serán actualizados <br/>
   ***val()*** *son los valor que **attr()** tomará para actualizar*
   ##### VB
-     1. Dim db As New DB() 'instanciamos la clase DB
-     2. db.table("users")
-     3. db.updateBy("id", 1, {"name"}, {"Lorenz"})
+```vb
+
+  Dim db As New DB() 'instanciamos la clase DB
+  db.table("users")
+  db.updateBy("id", 1, {"name"}, {"Lorenz"})
+
+```
      
   ##### SQL
-     1. UPDATE users SET name='Lorenz' WHERE id='1'
+````sql
+  UPDATE users SET name='Lorenz' WHERE id='1'
+```
  
   #### Eliminar registros de la tabla "users"
  
@@ -76,12 +121,18 @@ trabajar con base de datos de una manera sencilla.*
   ***id:*** *hace referencia a la condición. el cual es tomado así.* **row = id** <br/>
  
   ##### VB
-     1. Dim db As New DB() 'instanciamos la clase DB
-     2. db.table("users")
-     3 db.deleteBy("id", 1)
+```vb
+  
+  Dim db As New DB() 'instanciamos la clase DB
+  db.table("users")
+  db.deleteBy("id", 1)
+
+```
      
   ##### SQL
-     1. DELETE FROM users WHERE id='1'
+```sql
+  DELETE FROM users WHERE id='1'
+```
      
   
 created by : ***Hans Medina*** <br/>

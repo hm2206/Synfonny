@@ -7,7 +7,6 @@ Public Class Eloquent
     Private className As String = ""
     Private self As Type
     Private table As Object = ""
-    Private primaryKey As Object = "id"
     Protected datos As Object
 
     Sub New()
@@ -32,15 +31,6 @@ Public Class Eloquent
     Protected Sub setTable(ByVal obj As Object)
         Me.table = obj
     End Sub
-
-    Public Function getPrimaryKey() As Object
-        Return Me.primaryKey
-    End Function
-
-    Protected Sub setPrimaryKey(ByVal obj As Object)
-        Me.primaryKey = obj
-    End Sub
-
 
     'Tabla por default
     Private Sub tableDefault()

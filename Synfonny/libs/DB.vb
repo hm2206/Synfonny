@@ -20,6 +20,16 @@
         Return Me
     End Function
 
+    Public Function limite(ByVal valor As Object) As DB
+        Me.setLimite(valor)
+        Return Me
+    End Function
+
+    Public Function limite(ByVal valor1 As Object, ByVal valor2 As Object) As DB
+        Me.setLimite(valor1, valor2)
+        Return Me
+    End Function
+
 
     Public Function join(ByVal t2 As Object, ByVal val1 As Object, ByVal val2 As Object) As DB
         Me.innerJoin(t2, val1, val2)
@@ -48,41 +58,28 @@
 
 
     'QUERIES PREPARADAS
-    Public Function createBy(ByVal attr() As Object, ByVal val() As Object) As Boolean
+    Public Function create(ByVal attr() As Object, ByVal val() As Object) As Boolean
         Me.setAttributes(attr)
         Me.setValues(val)
         Me.insertInto()
         Return Me.query(Me.generate())
     End Function
 
-    Public Function allBy() As DataTable
-        Me.selectFrom()
-        Return Me.queryReturn(Me.generate())
-    End Function
-
-    Public Function findBy(ByVal row As Object, ByVal id As Object) As DataTable
-        Me.selectFrom()
-        Me.where(row, id)
-        Return Me.queryReturn(Me.generate())
-    End Function
-
-    Public Function updateBy(ByVal row As Object, ByVal id As Object, ByVal attr As Object, ByVal val() As Object) As Boolean
+    Public Function update(ByVal attr As Object, ByVal val() As Object) As Boolean
         Me.setAttributes(attr)
         Me.setValues(val)
         Me.keyValue()
         Me.updateSet()
-        Me.where(row, id)
         Return Me.query(Me.generate())
     End Function
 
 
-    Public Function deleteBy(ByVal row As Object, ByVal id As Object) As Boolean
+    Public Function delete() As Boolean
         Me.deleteFrom()
-        Me.where(row, id)
         Return Me.query(Me.generate())
     End Function
 
-    Public Function rawDataTable(ByVal sqlRaw As Object) As DataTable
+    Public Function rawReturn(ByVal sqlRaw As Object) As DataTable
         Return Me.queryReturn(sqlRaw)
     End Function
 
@@ -92,12 +89,12 @@
 
 
     'EJECUTAR CONSULTA DE RETORNO
-    Public Function getBy() As DataTable
+    Public Function gets() As DataTable
         Me.selectFrom()
         Return Me.queryReturn(Me.generate())
     End Function
 
-    Public Function getBy(ByVal attr() As Object) As DataTable
+    Public Function gets(ByVal attr() As Object) As DataTable
         Me.setAttributes(attr)
         Me.selectFrom()
         Return Me.queryReturn(Me.generate())

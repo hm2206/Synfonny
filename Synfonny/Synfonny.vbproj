@@ -88,7 +88,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="app\models\Producto.vb" />
+    <Compile Include="app\models\User.vb" />
     <Compile Include="config\DBConfig.vb" />
     <Compile Include="libs\Validate.vb" />
     <Compile Include="Readme.vb">

@@ -1,7 +1,6 @@
 ﻿Public Class Model
     Inherits Eloquent
 
-    Private key As Object
     Private CREATED_AT As Object = "created_at"
     Private UPDATED_AT As Object = "updated_at"
     Private timestamps As Boolean = True
@@ -9,14 +8,6 @@
 
 
     'SETTERS
-    Public Sub setKey(ByVal newKey As Object)
-        Me.key = newKey
-    End Sub
-
-    Public Function getKey() As Object
-        Return Me.key
-    End Function
-
     Protected Sub setTimes(ByVal times As Boolean)
         Me.timestamps = times
     End Sub
@@ -27,7 +18,17 @@
     End Function
 
 
-    Public Function concat(ByVal obj1() As Object, ByVal obj2() As Object) As Object()
+    Public Function limite(ByVal valor As Object) As Model
+        Me.db.limite(valor)
+        Return Me
+    End Function
+
+    Public Function limite(ByVal valor1 As Object, ByVal valor2 As Object) As Model
+        Me.db.limite(valor1, valor2)
+        Return Me
+    End Function
+
+    Protected Function concat(ByVal obj1() As Object, ByVal obj2() As Object) As Object()
         Dim newObj(obj1.Length + obj1.Length) As Object
         Dim iter As Object = 0
         Dim limite As Object = 0
@@ -48,15 +49,41 @@
         Return newObj
     End Function
 
+    'SENTENCIAS
+
+    Public Function where(ByVal val1 As Object, ByVal signo As Object, ByVal val2 As Object) As Model
+        Me.db.where(val1, signo, val2)
+        Return Me
+    End Function
+
+    Public Function where(ByVal val1 As Object, ByVal val2 As Object) As Model
+        Me.db.where(val1, val2)
+        Return Me
+    End Function
+
+    Public Function orWhere(ByVal val1 As Object, ByVal signo As Object, ByVal val2 As Object) As Model
+        Me.db.orWhere(val1, signo, val2)
+        Return Me
+    End Function
+
+    Public Function orWhere(ByVal val1 As Object, ByVal val2 As Object) As Model
+        Me.db.orWhere(val1, val2)
+        Return Me
+    End Function
+
 
     'QUERIES PREPARATE
     Public Function all() As DataTable
-        Return Me.db.allBy()
+        Return Me.db.gets()
     End Function
 
     Public Function find(ByVal id As Object) As Map
-        Me.datos = Me.db.findBy(Me.getPrimaryKey, id)
-        Return New Map(Me.datos)
+        Return New Map(Me, id)
+    End Function
+
+    Public Function first() As Map
+        Dim t As DataTable = Me.db.limite(1).gets()
+        Return New Map(Me, t)
     End Function
 
     Public Function create(ByVal attr() As Object, ByVal val() As Object) As Boolean
@@ -64,25 +91,25 @@
             attr = Me.concat(attr, {Me.CREATED_AT, Me.UPDATED_AT})
             val = Me.concat(val, {Me.carbon.now, Me.carbon.now})
         End If
-        Return Me.db.createBy(attr, val)
+        Return Me.db.create(attr, val)
     End Function
 
     Public Function update(ByVal attr() As Object, ByVal val() As Object) As Boolean
-        Return Me.db.updateBy(Me.getPrimaryKey, Me.key, attr, val)
-    End Function
-
-    Public Function update(ByVal row As Object, ByVal id As Object, ByVal attr() As Object, ByVal val() As Object) As Boolean
-        Return Me.db.updateBy(row, id, attr, val)
+        Return Me.db.update(attr, val)
     End Function
 
     Public Function delete() As Boolean
-        Return Me.db.deleteBy(Me.getPrimaryKey, Me.key)
+        Return Me.db.delete()
     End Function
 
-    Public Function delete(ByVal row As Object, ByVal id As Object) As Boolean
-        Return Me.db.deleteBy(row, id)
+
+    Public Function gets() As DataTable
+        Return Me.db.gets()
     End Function
 
+    Public Function gets(ByVal attr() As Object) As DataTable
+        Return Me.db.gets(attr)
+    End Function
 
 
 End Class

@@ -14,6 +14,7 @@
     Private key_value_string As Object = ""
     Private decorador_string As Object = ""
     Private operation As Object = ""
+    Private limite As Object
 
 
     Protected Function setTable(ByVal t As Object) As Query
@@ -35,6 +36,7 @@
         Me.key_value_string = ""
         Me.decorador_string = ""
         Me.operation = ""
+        Me.limite = ""
     End Sub
 
     'SET de attribures y select_string
@@ -51,6 +53,14 @@
         select_string = Join(Me.attributes, ",")
         Return Me
     End Function
+
+    Protected Sub setLimite(ByVal valor As Object)
+        Me.limite = " LIMIT " & valor
+    End Sub
+
+    Protected Sub setLimite(ByVal valor1 As Object, ByVal valor2 As Object)
+        Me.limite = " LIMIT " & valor1 & ", " & valor2 & " "
+    End Sub
 
     Protected Function setAttributesConcat(ByVal attr() As Object) As Query
         Dim iter As Object = 0
@@ -110,7 +120,7 @@
     End Function
 
     'SET wheres() y where_string
-    Public Function setWhere(ByVal val1 As Object, ByVal signo As Object, ByVal val2 As Object, ByVal opt As Object) As Query
+    Protected Function setWhere(ByVal val1 As Object, ByVal signo As Object, ByVal val2 As Object, ByVal opt As Object) As Query
         Dim parse As Object = val1 & " " & signo & " '" & val2 & "'"
         Dim tmp_where(Me.wheres.Length + 1) As Object
         Dim iter As Object = 0
@@ -191,7 +201,7 @@
 
     'GENERADOR DE CONSULTA SQL
     Protected Function generate() As Object
-        Me.sql = Me.operation & where_string & join_string & Me.decorador_string
+        Me.sql = Me.operation & where_string & join_string & Me.decorador_string & Me.limite
         Me.reset()
         Return Me.sql
     End Function

@@ -6,11 +6,32 @@ Preocupate por el diseño que #Synfonny te provee herramientas para
 trabajar con base de datos de una manera sencilla.*
 
 
-#### GET STARTED
+## GET STARTED
   
   - ***INSTALACIÓN***
-  - ***BASE DE DATOS***
-
+  - ***[BASE DE DATOS](https://github.com/jocker2206/Synfonny/edit/master/DATABASE.md)***
   
-created by : ***Hans Medina*** <br/>
+  
+ ### Instalación
+ 
+ ##### Clonar repositorio
+ ```powershell
+    git clone https://github.com/jocker2206/Synfonny.git
+ ```
+ 
+ ##### Inicializar proyecto con GIT(Opcional)
+ ```powershell
+    git init
+ ```
+ 
+ ##### Renombrar Proyecto
+*Usted debe cambiar el nombre del proyecto EJEMPLO: Nombre actual ***Synfonny*** => { **Nuevo Nombre** }*
+
+ 
+ ##### Terminar
+ *Abrir el Proyecto en Visual Studio { versión }* <br/>
+ ###### El   .NET FRAMEWORK debe se mayor o igual a 4.5 
+  
+  
+autor : ***Hans Medina*** <br/>
 email: ***twd2206@gmail.com***

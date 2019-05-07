@@ -199,6 +199,15 @@ Pero con el método `verifyBy`*
   
   'realizando validaciones multiples, por medio de su tag
   val.verifyBy({"name", "email", "copies"}, {"required", "required|email", "required|number"})
+  
+  'verificamos si todo salió bien y creamos una nueva movie
+  If val.nextTo() Then
+  
+    Dim movie As New Movie()
+    movie.create({"name_movie", "copies", "email_empresa"}, {Me.txtName.Text, Me.txtCopies.Text, Me.txtEmail.Text})
+    MsgBox("La película fue creada correctamente")
+    
+  End If
 
 
 ```

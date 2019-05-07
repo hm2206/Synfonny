@@ -17,6 +17,9 @@ trabajar con base de datos de una manera sencilla.*
  ##### Clonar repositorio
  ```powershell
     git clone https://github.com/jocker2206/Synfonny.git {nombre de tu proyecto}
+    
+    'Ejemplo
+    git clone https://github.com/jocker2206/Synfonny.git Store
  ```
  
  ##### Inicializar proyecto con GIT(Opcional)

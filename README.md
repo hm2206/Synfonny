@@ -36,6 +36,8 @@ trabajar con base de datos de una manera sencilla.*
  *Abrir el Proyecto en Visual Studio { versión }* <br/>
  ###### El   .NET FRAMEWORK debe se mayor o igual a 4.5 
  
+ ---
+ 
  ### Deploy
  * **Cambiar nombre del ensamblado:** abrir archivo de `My Project` y en el apartado de 
  `Aplicación` > en el campo `Nombre del ensamblado:` { **Nuevo nombre** }
@@ -44,8 +46,8 @@ trabajar con base de datos de una manera sencilla.*
  `Aplicación` > en el campo `Espacio de nombres de la raíz:` { **Nuevo nombre** }
  
   * **Cambiar Icono:** abrir archivo de `My Project` y en el apartado de 
- `Aplicación` > en el campo `Icono:` { **<Examinar>** }
+ `Aplicación` > en el campo `Icono:` { **Nuevo Icono(jpg,jpeg,png,ico,...)** }
   
   
-autor : ***Hans Medina*** <br/>
-email: ***twd2206@gmail.com***
+`autor` : ***Hans Medina*** <br/>
+`email:` ***twd2206@gmail.com***

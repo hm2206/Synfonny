@@ -71,7 +71,7 @@ End Class
   #### Obtener registos de la tabla users
   
   _Generamos la consulta para mostrar todos los registros de la tabla "users" <br/> 
-  Con los metodos **all()** y **gets** los cuales retornan un **DataTable**_
+  Con los métodos **all()** y **gets** los cuales retornan un **DataTable**_
   ##### VB
      
 ```vb
@@ -89,7 +89,7 @@ End Class
    db.table("users").selects({"name"}).gets()
      
    'Tambien podemos utilizar la sentencia WHERE con sus respectivas condiciones logicas como AND y OR
-   'para poder ulilizar existen 2 metodos, los cuales son where y orWhere
+   'para poder ulilizar existen 2 métodos, los cuales son where y orWhere
    db.table("users").where("id", 1).gets()
    'O También
    db.table("users").where("id", "<>", 1).selects({"id"}).gets()
@@ -124,7 +124,7 @@ End Class
 ```
   #### Insertar un registro a la tabla "users"
     
-  *Para insertar datos a una tabla, **DB** te proporciona el metodo **create()** el cual genera la consulta SQL y la ejecuta*
+  *Para insertar datos a una tabla, **DB** te proporciona el método **create()** el cual genera la consulta SQL y la ejecuta*
   ##### VB
 ```vb
 
@@ -140,9 +140,9 @@ End Class
      
   #### Actualizar uno o varios registro de la tabla "users"
   
-  *Para actualizar un registro, **DB** te proporciona el metodo **update** el cual
+  *Para actualizar un registro, **DB** te proporciona el método **update** el cual
   retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
-  recibe 2 parametros:* <br/>
+  recibe 2 parámetros:* <br/>
   ***update(attr() As Object, val() as Object)*** <br/>
   ***attr()*** *hace referencia a los atributos que serán actualizados <br/>
   ***val()*** *son los valor que **attr()** tomará para actualizar*
@@ -168,7 +168,7 @@ End Class
  
   #### Eliminar registros de la tabla "users"
  
-  _Para eliminar registros, ***DB*** te proporciona el metodo ***delete*** el cual
+  _Para eliminar registros, ***DB*** te proporciona el método ***delete*** el cual
   retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
   recibe 2 parametros:_ <br/>
   ***delete()*** <br/>
@@ -194,7 +194,7 @@ End Class
 ```
 
 
-### Todos los metodos de la clase DB
+### Todos los métodos de la clase DB
 
 
 | Nombre                  | Parametros          |  Descripción                  | Tipo de dato   |
@@ -226,7 +226,7 @@ End Class
 
 *Para comenzar a utilizar la Clase **Model** usted debe seguir varias reglas*
 
-1. Debe crear una Clase en **VB** con el nombre en singular(***Item.vb***) en la ruta ``` ./app/models/Item.vb ```
+1. Debe crear una clase en **VB** con el nombre en singular(***Item.vb***) en la ruta ``` ./app/models/Item.vb ```
 2. Crear tabla pero en plural(***items***) con 2 atributos obligatorios: **created_at y updated_at** de tipo  **timestamp**
 ```sql
   # Items
@@ -256,7 +256,7 @@ End Class
 ##### Información de Model
 * La clase ***Model***, resuelve el nombre de la tabla de la siguiente manera:
 * Model toma el nombre de la clase instanciada(***Item***) y luego lo convierte en plural.
-* También es posible ingresar el nombre de la tabla de manera manual, eso es posible gracias al metodo **setTable()**
+* También es posible ingresar el nombre de la tabla de manera manual, eso es posible gracias al método **setTable()**
 
 ```vb
   
@@ -299,14 +299,14 @@ End Class
 
 ##### Obtener Registos
 
-*Para poder realizar esta operación, Las Clases heredadas de "***Model***" cuentán con el metodo **all() y gets()*** <br/>
-*Más adelante veremos otras maneras de realizar dicha operación
+*Para poder realizar esta operación, Las Clases heredadas de "***Model***" cuentán con el método **all() y gets()*** <br/>
+*Más adelante veremos otras maneras de realizar dicha operación.*
 
 ###### Información
-*Los metodos ***all() y gets()*** retornan un Objeto **DataTable** .* <br/>
-*También están disponibles los metodos ***where*** , ***orWhere*** y ***selects*** los cuales funcionan igual,
+*Los métodos ***all() y gets()*** retornan un Objeto **DataTable** .* <br/>
+*También están disponibles los métodos ***where*** , ***orWhere*** y ***selects*** los cuales funcionan igual,
 modificando la consulta antes de ser ejecutada.*
-*Para mayor información de los metodos ***where*** , ***orWhere*** y ***selects***, revisar la documentación de la clase **DB**
+*Para mayor información de los métodos ***where*** , ***orWhere*** y ***selects***, revisar la documentación de la clase **DB***
 
 *Ejemplo: Obtener registos y pasarlo a una grilla(**DataGridView**)
 
@@ -314,25 +314,25 @@ modificando la consulta antes de ser ejecutada.*
 ```vb
   Dim item As New Item() 'Instanciamos la clase Item
   
-  'obtener todos los registos con el metodo all()
+  'obtener todos los registos con el método all()
   Me.myDataGridView.DataSource = item.all()
   
-  'obtener todos los registos con el metodo gets()
+  'obtener todos los registos con el método gets()
   Me.myDataGridView.DataSource = item.gets()
   
-  'obtener todos los registos con el metodo gets(params)
+  'obtener todos los registos con el método gets(params)
   Me.myDataGridView.DataSource = item.gets({"descripcion"})
   
-  'obtener todos los registos con el metodo where y gets(params)
+  'obtener todos los registos con el método where y gets(params)
   Me.myDataGridView.DataSource = item.where("descripcion", "coffee").gets({"descripcion"})
   
-  'obtener todos los registos con el metodo where, selects y gets
+  'obtener todos los registos con el método where, selects y gets
   Me.myDataGridView.DataSource = item.where("descripcion", "coffee").selects({"descripcion"}).gets()
   
-  'obtener todos los registos con el metodo where, orWhere y gets
+  'obtener todos los registos con el método where, orWhere y gets
   Me.myDataGridView.DataSource = item.where("descripcion", "coffee").orWhere("id", "1").gets()
   
-  'obtener todos los registos con el metodo where y gets
+  'obtener todos los registos con el método where y gets
   Me.myDataGridView.DataSource = item.where("descripcion", "coffee").where("id", "1").gets()
   
 ```
@@ -357,13 +357,13 @@ modificando la consulta antes de ser ejecutada.*
 
 ##### Crear Registros
 
-*Para crear registros con la clase ***Model*** solo se debe utilizar el metodo **create***
+*Para crear registros con la clase ***Model*** solo se debe utilizar el método **create***
 
-##### Información del Metodo *create*
-*El metodo **create(att() As Object, val() As Object)** recibe 2 parametros:* <br/>
-***attr() as Object** : acá se recibe los atributos de la tabla <br/>
+##### Información del Método *create*
+*El método **create(att() As Object, val() As Object)** recibe 2 parametros:* <br/>
+***attr() as Object** : acá se recibe los atributos de la tabla* <br/>
 ***val() as Object**: acá se recibe los valores que serán insertados en los **attr*** <br/>
-*El metodo **create(params)** retorna un **Boolean**, True si la operación es exitosa y **False** hubo algún problema*
+*El método **create(params)** retorna un **Boolean**, True si la operación es exitosa y **False** hubo algún problema*
 
 *Ejemplo: (Utilizaremos la clase **Item**, el cual hereda la clase **Model**)*
 
@@ -384,7 +384,7 @@ modificando la consulta antes de ser ejecutada.*
 
  #### Actualizar uno o varios registro de la tabla "items"
   
-  *Para actualizar un registro, **Model** te proporciona el metodo **update** el cual
+  *Para actualizar un registro, **Model** te proporciona el método **update** el cual
   retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
   recibe 2 parametros:* <br/>
   ***update(attr() As Object, val() as Object)*** <br/>
@@ -412,7 +412,7 @@ modificando la consulta antes de ser ejecutada.*
  
   #### Eliminar registros de la tabla "items"
  
-  _Para eliminar registros, ***Model*** te proporciona el metodo ***delete*** el cual
+  _Para eliminar registros, ***Model*** te proporciona el método ***delete*** el cual
   retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
   recibe 2 parametros:_ <br/>
   ***delete()*** <br/>
@@ -440,11 +440,11 @@ modificando la consulta antes de ser ejecutada.*
 
 #### Obtener un solo registro de la tabla "items"
 
-*Para poder realizar esta operación, Las Clases heredadas de "***Model***" cuentán con el metodo **find() y first()*** <br/>
-*Ambos metodos retorna un objecto **Map** el cual trae metodos como: **update**, **delete**, **item** y **source*** <br/>
+*Para poder realizar esta operación, Las Clases heredadas de "***Model***" cuentán con el método **find() y first()*** <br/>
+*Ambos métodos retorna un objecto **Map** el cual trae métodos como: **update**, **delete**, **item** y **source*** <br/>
 *Los cuales se encargan de actualizar(**update**) y eliminar(**delete**) el registro actualmente obtenido.* <br/>
-*También es posible obtener un objeto **DataTable** con el metodo **source*** <br/>
-*Ahora con el metodo **item** es posible obtener el valor del campo de la tabla. Ejem: ` item.item("id") `* </br>
+*También es posible obtener un objeto **DataTable** con el método **source*** <br/>
+*Ahora con el método **item** es posible obtener el valor del campo de la tabla. Ejem: ` item.item("id") `* </br>
 
 
 *Ejemplos
@@ -457,15 +457,15 @@ modificando la consulta antes de ser ejecutada.*
  'Creamos una variable de tipo Map
  Dim itemMap as Map 
  
- 'Obtenemos un objecto Map con el metodo find(id)
+ 'Obtenemos un objecto Map con el método find(id)
  itemMap = item.find(1)
  'OUTPUT SELECT * FROM items WHERE id = '1'
  
- 'Obtenemos un objecto Map con el metodo first
+ 'Obtenemos un objecto Map con el método first
  itemMap = item.first
  'OUTPUT SELECT * FROM items LIMIT 1
  
- 'Ahora madaremos un mensage con el metodo MsgBox y el metodo item
+ 'Ahora madaremos un mensage con el método MsgBox y el método item
  MsgBox(itemMap.item("descripcion"))
  'OUTPUT ! coffee !
  
@@ -482,7 +482,7 @@ modificando la consulta antes de ser ejecutada.*
 
 ```
 
-### Todos los metodos de la clase Model
+### Todos los métodos de la clase Model
 
 
 | Nombre                  | Parametros          |  Descripción                  | Tipo de dato   |

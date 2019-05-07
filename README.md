@@ -6,7 +6,7 @@ Preocupate por el diseño que **Synfonny** te provee herramientas para
 trabajar con base de datos de una manera sencilla.*
 
 
-## GET STARTED
+## EMPEZAR
   
   - ***INSTALACIÓN***
   - ***[BASE DE DATOS](https://github.com/jocker2206/Synfonny/blob/master/DATABASE.md)***

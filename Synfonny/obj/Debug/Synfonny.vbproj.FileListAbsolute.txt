@@ -1,0 +1,17 @@
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\bin\Debug\Synfonny.exe.config
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\bin\Debug\Synfonny.exe
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\bin\Debug\Synfonny.pdb
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\bin\Debug\Synfonny.xml
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\obj\Debug\Synfonny.Resources.resources
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\obj\Debug\Synfonny.vbproj.GenerateResource.Cache
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\obj\Debug\Synfonny.exe
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\obj\Debug\Synfonny.xml
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\obj\Debug\Synfonny.pdb
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\obj\Debug\Synfonny.vbprojResolveAssemblyReference.cache
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\bin\Debug\Google.Protobuf.dll
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\bin\Debug\MySql.Data.dll
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\bin\Debug\MySql.Data.Entity.dll
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\bin\Debug\MySql.Data.Entity.EF6.dll
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\bin\Debug\MySql.Fabric.Plugin.dll
+c:\users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\bin\Debug\MySql.Web.dll
+C:\Users\python\documents\visual studio 2013\Projects\Synfonny\Synfonny\obj\Debug\Synfonny.Readme.resources

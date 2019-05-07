@@ -10,6 +10,7 @@ trabajar con base de datos de una manera sencilla.*
   
   - ***INSTALACIÓN***
   - ***[BASE DE DATOS](https://github.com/jocker2206/Synfonny/blob/master/DATABASE.md)***
+  - ***DEPLOY**
   
   
  ### Instalación
@@ -18,7 +19,7 @@ trabajar con base de datos de una manera sencilla.*
  ```powershell
     git clone https://github.com/jocker2206/Synfonny.git {nombre de tu proyecto}
     
-    'Ejemplo
+    #Ejemplo
     git clone https://github.com/jocker2206/Synfonny.git Store
  ```
  
@@ -34,6 +35,16 @@ trabajar con base de datos de una manera sencilla.*
  ##### Terminar
  *Abrir el Proyecto en Visual Studio { versión }* <br/>
  ###### El   .NET FRAMEWORK debe se mayor o igual a 4.5 
+ 
+ ### Deploy
+ * **Cambiar nombre del ensamblado:** abrir archivo de `My Project` y en el apartado de 
+ `Aplicación` > en el campo `Nombre del ensamblado:` { **Nuevo nombre** }
+ 
+ * **Cambiar Espacio de nombres de la raíz:** abrir archivo de `My Project` y en el apartado de 
+ `Aplicación` > en el campo `Espacio de nombres de la raíz:` { **Nuevo nombre** }
+ 
+  * **Cambiar Icono:** abrir archivo de `My Project` y en el apartado de 
+ `Aplicación` > en el campo `Icono:` { **<Examinar>** }
   
   
 autor : ***Hans Medina*** <br/>

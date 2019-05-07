@@ -59,45 +59,80 @@
 
     'QUERIES PREPARADAS
     Public Function create(ByVal attr() As Object, ByVal val() As Object) As Boolean
-        Me.setAttributes(attr)
-        Me.setValues(val)
-        Me.insertInto()
-        Return Me.query(Me.generate())
+        Try
+            Me.setAttributes(attr)
+            Me.setValues(val)
+            Me.insertInto()
+            Return Me.query(Me.generate())
+        Catch ex As Exception
+            Console.WriteLine(ex)
+            Return False
+        End Try
     End Function
 
     Public Function update(ByVal attr As Object, ByVal val() As Object) As Boolean
-        Me.setAttributes(attr)
-        Me.setValues(val)
-        Me.keyValue()
-        Me.updateSet()
-        Return Me.query(Me.generate())
+        Try
+            Me.setAttributes(attr)
+            Me.setValues(val)
+            Me.keyValue()
+            Me.updateSet()
+            Return Me.query(Me.generate())
+        Catch ex As Exception
+            Console.WriteLine(ex)
+            Return False
+        End Try
     End Function
 
 
     Public Function delete() As Boolean
-        Me.deleteFrom()
-        Return Me.query(Me.generate())
+        Try
+            Me.deleteFrom()
+            Return Me.query(Me.generate())
+        Catch ex As Exception
+            Console.WriteLine(ex)
+            Return False
+        End Try
     End Function
 
     Public Function rawReturn(ByVal sqlRaw As Object) As DataTable
-        Return Me.queryReturn(sqlRaw)
+        Try
+            Return Me.queryReturn(sqlRaw)
+        Catch ex As Exception
+            Console.WriteLine(ex)
+            Return Nothing
+        End Try
     End Function
 
     Public Function raw(ByVal sqlRaw As Object) As Boolean
-        Return Me.query(sqlRaw)
+        Try
+            Return Me.query(sqlRaw)
+        Catch ex As Exception
+            Console.WriteLine(ex)
+            Return False
+        End Try
     End Function
 
 
     'EJECUTAR CONSULTA DE RETORNO
     Public Function gets() As DataTable
-        Me.selectFrom()
-        Return Me.queryReturn(Me.generate())
+        Try
+            Me.selectFrom()
+            Return Me.queryReturn(Me.generate())
+        Catch ex As Exception
+            Console.WriteLine(ex)
+            Return Nothing
+        End Try
     End Function
 
     Public Function gets(ByVal attr() As Object) As DataTable
-        Me.setAttributes(attr)
-        Me.selectFrom()
-        Return Me.queryReturn(Me.generate())
+        Try
+            Me.setAttributes(attr)
+            Me.selectFrom()
+            Return Me.queryReturn(Me.generate())
+        Catch ex As Exception
+            Console.WriteLine(ex)
+            Return Nothing
+        End Try
     End Function
 
 End Class

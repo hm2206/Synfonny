@@ -8,7 +8,10 @@
 
         If Me.driver = "mysql" Then
             Me.adaptador = New AdapterMysql(Me.host, Me.user, Me.password, Me.dabaBase, Me.port)
+        ElseIf Me.driver = "sqls" Then
+            Me.adaptador = New AdapterSQLServer(Me.host, Me.user, Me.password, Me.dabaBase)
         End If
+
 
     End Sub
 

@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="app\models\User.vb" />
     <Compile Include="config\DBConfig.vb" />
+    <Compile Include="libs\AdapterDB\AdapterSQLServer.vb" />
     <Compile Include="libs\Validate.vb" />
     <Compile Include="Readme.vb">
       <SubType>Form</SubType>
@@ -102,7 +103,7 @@
     <Compile Include="libs\DB.vb" />
     <Compile Include="libs\Eloquent.vb" />
     <Compile Include="libs\InterfaceAdapterConexion.vb" />
-    <Compile Include="libs\AdapterMysql.vb" />
+    <Compile Include="libs\AdapterDB\AdapterMysql.vb" />
     <Compile Include="libs\Conexion.vb" />
     <Compile Include="libs\Map.vb" />
     <Compile Include="libs\Model.vb" />

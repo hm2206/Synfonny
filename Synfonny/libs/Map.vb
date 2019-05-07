@@ -54,10 +54,14 @@
 
 
     Private Sub validate()
-        If Me.datos.Rows.Count > 0 Then
-            Me.rows = Me.datos.Rows.Item(0)
-            Me.key = Me.rows.Item(Me.PrimaryKey.ToString)
-        End If
+        Try
+            If Me.datos.Rows.Count > 0 Then
+                Me.rows = Me.datos.Rows.Item(0)
+                Me.key = Me.rows.Item(Me.PrimaryKey.ToString)
+            End If
+        Catch ex As Exception
+            Console.WriteLine(ex)
+        End Try
     End Sub
 
     Private Sub settingPrimaryKey()

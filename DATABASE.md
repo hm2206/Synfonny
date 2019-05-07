@@ -15,7 +15,7 @@
  1. Ingrese al archivo de configuración `./config/DBConfig.vb`
  2. Cambiar los valores de los atributos que sean necesarios para tu conexión: `host`, `user`, `password`, `port`, `dataBase`, `driver`
  
- #DBconfig.vb
+ ##### DBconfig.vb
  ```vb 
  Public Class DBConfig
 

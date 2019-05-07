@@ -7,7 +7,7 @@
  *Para confígurar la conexión a la base de datos y que gestor se utilizará en el proyecto.
  se debe tener en cuenta los siguientes pasos:*
  
-> Para seguír con los pasos, usted debe tener previamente instalados los gestores de base de datos que va a utilizar.
+> Para seguir con los pasos, usted debe tener previamente instalados los gestores de base de datos que va a utilizar.
 
 > `Mysql` se recomienda instalar [laragon](https://laragon.org/download/index.html) 
 > `SQLServer` se recomienda instalar [Microsoft Sql Server](https://www.microsoft.com/es-es/sql-server/sql-server-downloads)
@@ -47,7 +47,7 @@ End Class
  
  ```
  
- 3. Si todos los valores son correctos, la configuración a sido exitosa!
+ 3. Si todos los valores son correctos, la configuración ha sido exitosa!
  
 ---
   
@@ -59,7 +59,7 @@ End Class
       Dim db as new DB()
     ```
     
-    *Primero creamos la Base de datos "prueba" y despues la tabla "users"*
+    *Primero creamos la Base de datos "prueba" y después la tabla "users"*
     
     *Estructura:*
     
@@ -68,7 +68,7 @@ End Class
        * name(40): Varchar, NOTNULL
        * edad(2): Int
     
-  #### Obtener registos de la tabla users
+  #### Obtener registros de la tabla users
   
   _Generamos la consulta para mostrar todos los registros de la tabla "users" <br/> 
   Con los métodos **all()** y **gets** los cuales retornan un **DataTable**_
@@ -79,17 +79,17 @@ End Class
    Dim db As New DB()
    db.table("users").all()
   
-   'Tambien se puede de esta manera
+   'También se puede de esta manera
    db.table("users").gets()
    
-   'Tambien se puede definir que atributos se va ha obtener
+   'También se puede definir que atributos se va a obtener
    db.table("users").gets({"id"})
      
-   'Tambien se puede de esta manera
+   'También se puede de esta manera
    db.table("users").selects({"name"}).gets()
      
-   'Tambien podemos utilizar la sentencia WHERE con sus respectivas condiciones logicas como AND y OR
-   'para poder ulilizar existen 2 métodos, los cuales son where y orWhere
+   'También podemos utilizar la sentencia WHERE con sus respectivas condiciones lógicas como AND y OR
+   'para poder utilizar existen 2 métodos, los cuales son where y orWhere
    db.table("users").where("id", 1).gets()
    'O También
    db.table("users").where("id", "<>", 1).selects({"id"}).gets()
@@ -141,11 +141,11 @@ End Class
   #### Actualizar uno o varios registro de la tabla "users"
   
   *Para actualizar un registro, **DB** te proporciona el método **update** el cual
-  retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
+  retorna un **Boolean**, si todo salió bien un **True** y si no **False** y también
   recibe 2 parámetros:* <br/>
   ***update(attr() As Object, val() as Object)*** <br/>
   ***attr()*** *hace referencia a los atributos que serán actualizados <br/>
-  ***val()*** *son los valor que **attr()** tomará para actualizar*
+  ***val()*** *son los valores que **attr()** tomará para actualizar*
   ##### VB
 ```vb
 
@@ -154,7 +154,7 @@ End Class
   'Esta consulta actualizará todos los registros de la tabla users
   db.table("users").update({"name"}, {"Lorenz"})
   
-  'Esta consulta actualizará solo el o los registros según la condición
+  'Esta consulta solo actualizará él o los registros según la condición
   db.table("users").where("id", 1).update({"name"}, {"Lorenz"})
 
 ```
@@ -169,8 +169,8 @@ End Class
   #### Eliminar registros de la tabla "users"
  
   _Para eliminar registros, ***DB*** te proporciona el método ***delete*** el cual
-  retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
-  recibe 2 parametros:_ <br/>
+  retorna un **Boolean**, si todo salió bien un **True** y si no **False** y también
+  recibe 2 parámetros:_ <br/>
   ***delete()*** <br/>
  
   ##### VB
@@ -181,7 +181,7 @@ End Class
   'Esta consulta eliminará todos los registros
   db.table("users").delete()
   
-  'Esta consulta eliminará los resgistros según la condición
+  'Esta consulta eliminará los registros según la condición
   db.table("users").where("id", 1).delete()
   
 ```
@@ -286,7 +286,7 @@ Public Class Item
     
     Public primaryKey As Object = "articulo_id"
 
-    'Es necesario crear un constructor y realizar los SETTING dentro de el
+    'Es necesario crear un constructor y realizar los SETTING dentro de él
     Sub New()
         Me.setTable("articulo") 'Aquí se renombra la tabla de manera manual
     End Sub
@@ -308,31 +308,31 @@ End Class
 modificando la consulta antes de ser ejecutada.*
 *Para mayor información de los métodos ***where*** , ***orWhere*** y ***selects***, revisar la documentación de la clase **DB***
 
-*Ejemplo: Obtener registos y pasarlo a una grilla(**DataGridView**)
+*Ejemplo: Obtener registros y pasarlo a una grilla(**DataGridView**)
 
 ##### VB
 ```vb
   Dim item As New Item() 'Instanciamos la clase Item
   
-  'obtener todos los registos con el método all()
+  'obtener todos los registros con el método all()
   Me.myDataGridView.DataSource = item.all()
   
-  'obtener todos los registos con el método gets()
+  'obtener todos los registros con el método gets()
   Me.myDataGridView.DataSource = item.gets()
   
-  'obtener todos los registos con el método gets(params)
+  'obtener todos los registros con el método gets(params)
   Me.myDataGridView.DataSource = item.gets({"descripcion"})
   
-  'obtener todos los registos con el método where y gets(params)
+  'obtener todos los registros con el método where y gets(params)
   Me.myDataGridView.DataSource = item.where("descripcion", "coffee").gets({"descripcion"})
   
-  'obtener todos los registos con el método where, selects y gets
+  'obtener todos los registros con el método where, selects y gets
   Me.myDataGridView.DataSource = item.where("descripcion", "coffee").selects({"descripcion"}).gets()
   
-  'obtener todos los registos con el método where, orWhere y gets
+  'obtener todos los registros con el método where, orWhere y gets
   Me.myDataGridView.DataSource = item.where("descripcion", "coffee").orWhere("id", "1").gets()
   
-  'obtener todos los registos con el método where y gets
+  'obtener todos los registros con el método where y gets
   Me.myDataGridView.DataSource = item.where("descripcion", "coffee").where("id", "1").gets()
   
 ```
@@ -360,10 +360,10 @@ modificando la consulta antes de ser ejecutada.*
 *Para crear registros con la clase ***Model*** solo se debe utilizar el método **create***
 
 ##### Información del Método *create*
-*El método **create(att() As Object, val() As Object)** recibe 2 parametros:* <br/>
+*El método **create(att() As Object, val() As Object)** recibe 2 parámetros:* <br/>
 ***attr() as Object** : acá se recibe los atributos de la tabla* <br/>
 ***val() as Object**: acá se recibe los valores que serán insertados en los **attr*** <br/>
-*El método **create(params)** retorna un **Boolean**, True si la operación es exitosa y **False** hubo algún problema*
+*El método **create(params)** retorna un **Boolean**, True si la operación es exitosa y **False** si hubo algún problema*
 
 *Ejemplo: (Utilizaremos la clase **Item**, el cual hereda la clase **Model**)*
 
@@ -386,7 +386,7 @@ modificando la consulta antes de ser ejecutada.*
   
   *Para actualizar un registro, **Model** te proporciona el método **update** el cual
   retorna un **Boolean**, si todo salió bien un **True** y sino **False** y también
-  recibe 2 parametros:* <br/>
+  recibe 2 parámetros:* <br/>
   ***update(attr() As Object, val() as Object)*** <br/>
   ***attr()*** *hace referencia a los atributos que serán actualizados <br/>
   ***val()*** *son los valor que **attr()** tomará para actualizar*
@@ -440,8 +440,8 @@ modificando la consulta antes de ser ejecutada.*
 
 #### Obtener un solo registro de la tabla "items"
 
-*Para poder realizar esta operación, Las Clases heredadas de "***Model***" cuentán con el método **find() y first()*** <br/>
-*Ambos métodos retorna un objecto **Map** el cual trae métodos como: **update**, **delete**, **item** y **source*** <br/>
+*Para poder realizar esta operación, Las Clases heredadas de "***Model***" cuentan con el método **find() y first()*** <br/>
+*Ambos métodos retorna un objeto **Map** el cual trae métodos como: **update**, **delete**, **item** y **source*** <br/>
 *Los cuales se encargan de actualizar(**update**) y eliminar(**delete**) el registro actualmente obtenido.* <br/>
 *También es posible obtener un objeto **DataTable** con el método **source*** <br/>
 *Ahora con el método **item** es posible obtener el valor del campo de la tabla. Ejem: ` item.item("id") `* </br>

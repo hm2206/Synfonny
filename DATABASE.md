@@ -1,7 +1,21 @@
 ## BASE DE DATOS
 
 
-### Base de Datos
+### Configuración
+
+ ***Synfonny** soporta los gestores de base de datos **Mysql** y **SQLServer**. Pero por defecto **Synfonny** viene con **Mysql**.*
+ *Para confígurar la conexión a la base de datos y que gestor se utilizará en el proyecto.
+ se debe tener en cuenta los siguientes pasos:*
+ 
+> Para seguír con los pasos, usted debe tener previamente instalados los gestores de base de datos que va a utilizar
+> `Mysql` se recomienda instalar [laragon](https://laragon.org/download/index.html) 
+> `SQLServer` se recomienda instalar [Microsoft Sql Server](https://www.microsoft.com/es-es/sql-server/sql-server-downloads)
+ 
+ 1. Ingrese al archivo de configuración `./config/DBConfig.vb`
+ 2. Cambiar los valores de los atributos que sean necesarios para tu conexión: `host`, `user`, `password`, `port`, `dataBase`, `driver`
+ 3. Si todos los valores son correctos, la configuración a sido exitosa!
+ 
+
   
   * **Utilizando la clase DB**
     

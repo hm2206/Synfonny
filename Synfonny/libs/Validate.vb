@@ -5,13 +5,8 @@ Public Class Validate
 
     Private pattern As String
     Private parse() As Object
-    Private vista As Form
     Private self As Type = Me.GetType()
     Private isValidate As Boolean = True
-
-    Public Sub New(ByVal vista As Form)
-        Me.vista = vista
-    End Sub
 
     Private Function recorevyValue(ByVal parse() As Object, ByVal tag As Object) As Object
         Dim recovery() As Object
@@ -49,7 +44,7 @@ Public Class Validate
     End Function
 
 
-    Public Sub preparate(ByVal inputs() As Object, ByVal tags() As Object)
+    Public Sub prepared(ByVal inputs() As Object, ByVal tags() As Object)
         Try
             Dim tmp_parse(inputs.Length - 1) As Object
             Dim iter As Object = 0

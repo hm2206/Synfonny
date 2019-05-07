@@ -1,6 +1,6 @@
 ﻿Public Class Readme
 
-    Private val As New Validate(Me)
+    Private val As New Validate()
 
     Private User As New User()
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
@@ -24,7 +24,7 @@
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         Dim u As Map = User.first()
 
-        Me.val.preparate({txtName.Text}, {"name"})
+        Me.val.prepared({txtName.Text}, {"name"})
         Me.val.verifyBy({"name"}, {"required"})
 
         If Me.val.nextTo Then

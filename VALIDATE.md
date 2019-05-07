@@ -84,7 +84,7 @@ Los atributos de la tabla son: `id, name_movie, copies, email_empresa, created_a
     AND CharsIsLessOfRange AND isNumber _ 
     AND isEmail AND NotFoundMovie Then
     
-    movie.create({"name_movie", "copies"}, {Me.txtName.Text, Me.txtCopies})
+    movie.create({"name_movie", "copies", "email_empresa"}, {Me.txtName.Text, Me.txtCopies.Text, Me.txtEmail.Text})
     MsgBox("La película fue creada correctamente")
     
   End If
@@ -93,5 +93,113 @@ Los atributos de la tabla son: `id, name_movie, copies, email_empresa, created_a
 ```
 
 
+*El ejemplo anterior se utiliza cuando los campos a validar son pocos, pero si tienes que validar varios campos como por ejemplo: <br/>*
+*los campos `txtName, txtEmail, txtCopies` deben ser obligatorios. <br/>
+*el campo `txtEmail` debe tener el formato de `email`
+*el campo `txtCopies` debe ser de tipo `Numeric`
 
+##### VB
+
+`
+  'Utilizando los metodos anteriores
+  
+  Dim val As New Validate()
+  
+  val.required(Me.txtName.Text, "name")
+  val.required(Me.txtEmail.Text, "email")
+  val.email(Me.txtEmail.Text, "email")
+  val.required(Me.txtCopies.Text, "copies")
+  val.number(Me.txtCopies.Text, "copies")
+
+`
+
+*El ejemplo anterior es muy verboso y ocupa muchas líneas de codigo. La clase **Validate** también te permite <br/>
+validar varios campos y que cada campo pueda tener varias validaciones.*
+
+> Los unicos métodos disponibles son `required`, `email` y `number`
+
+
+#### Lista de los todos los métodos de validación masiva en `Validate`
+
+
+| Nombre       | Parámetros     | Descripción        | Tipo de dato  |
+|--------------|----------------|--------------------|---------------|
+| verify       | `input As Object`, `tag As Object`, `validates() As Object` | se encarga de validar los campos con los métodos disponibles en la función. Si cualquiera de los métodos retorna False, el método retornará `False`, sino `True`|Boolean|
+| verifyBy     | `tags() As Object`, `methods() As Object` | se encarga de validar varios campos a la vez, con los métodos disponibles en la función. Si cualquiera de los métodos retorna False, el método retornará `False`, sino `True`|Boolean|
+
+
+
+#### Descrición de los parámetros
+
+* **`input`**: Hace referencia al `texto` de los `TextBox, RichTextBox`
+* **`tag`**: sirve para utilizarlo, como nombre en un `MsgBox("el campo {tags} es {...[required, email, min...]}")`
+* **`validates()`**: sirve para describir los métodos que se van a ejecutar al momento de validar el campo
+* **`tags`**: sirve para acceder a los valores de los campos. tambien se utiliza como `tag`
+
+> !Para poder utilizar el método **`verifyBy`** es necesario utilizar el método **`prepared`**
+> El método recibe `inputs` y `tags`, estos parametros ya utilizamos en los `métodos individuales` que están arriba.
+> Primero se invoca el método `prepared` y luego el `verifyBy`
+
+
+*Ejemplo 1:*
+*Vamos a utilizar el ejemplo anterior de las películas... <br/>
+Pero con el método `verify`*
+
+
+##### VB
+```vb
+  
+  Dim val As New Validate()
+  
+  'Utilizando el método verify y campararemos con los métodos anteriomente utlizados.
+  
+  'el campo TextName debe de ser obligatorio
+  val.required(Me.txtName.Text, "name") 'método required
+  val.verify(Me.txtName.Text, "name", {"required"}) 'método verify
+  
+  
+  'el campo TextEmail debe de ser obligatorio y de formato Email
+  val.required(Me.txtEmail.Text, "email") 'método required
+  val.email(Me.txtEmail.Text, "email") 'método email
+  val.verify(Me.txtEmail.Text, "email", {"required","email"}) 'método verify
+  
+  
+  'el campo TextCopies debe de ser obligatorio y de tipo Numeric
+  val.required(Me.txtCopies.Text, "copies") 'método required
+  val.number(Me.txtCopies.Text, "copies") 'método number
+  val.verify(Me.txtCopies.Text, "copies", {"required","number"}) 'método verify
+  
+
+```
+
+
+
+*Ejemplo 2:*
+*Vamos a utilizar el ejemplo anterior de las películas... <br/>
+Pero con el método `verifyBy`*
+
+
+##### VB
+```vb
+
+  'utilizando los métodos individuales
+  Dim val As New Validate()
+  
+  val.required(Me.txtName.Text, "name")
+  val.required(Me.txtEmail.Text, "email")
+  val.email(Me.txtEmail.Text, "email")
+  val.required(Me.txtCopies.Text, "copies")
+  val.number(Me.txtCopies.Text, "copies")
+  
+  
+  'utilizando el método verifyBy
+  
+  'configurando los campos que se van a poder validar
+  val.prepared({Me.txtName.Text, Me.txtEmail.Text, Me.txtCopies.Text}, {"name","email","copies"})
+  
+  'realizando validaciones multiples, por medio de su tag
+  val.verifyBy({"name", "email", "copies"}, {"required", "required|email", "required|number"})
+
+
+```
 

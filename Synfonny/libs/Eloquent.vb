@@ -1,5 +1,5 @@
 ﻿
-Public Class Eloquent
+Public MustInherit Class Eloquent
 
 
 

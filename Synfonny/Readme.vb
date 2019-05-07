@@ -1,5 +1,7 @@
 ﻿Public Class Readme
 
+    Private val As New Validate(Me)
+
     Private User As New User()
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         System.Diagnostics.Process.Start("https://github.com/jocker2206/Synfonny")
@@ -21,8 +23,16 @@
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         Dim u As Map = User.first()
-        u.update({"name"}, {Me.txtName.Text})
-        Me.btnAbort_Click(sender, e)
+
+        Me.val.preparate({txtName.Text}, {"name"})
+        Me.val.verifyBy({"name"}, {"required"})
+
+        If Me.val.nextTo Then
+            u.update({"name"}, {Me.txtName.Text})
+            MsgBox("el campo name se actualizó correctamente")
+            Me.btnAbort_Click(sender, e)
+        End If
+
     End Sub
 
     Private Sub btnAbort_Click(sender As Object, e As EventArgs) Handles btnAbort.Click

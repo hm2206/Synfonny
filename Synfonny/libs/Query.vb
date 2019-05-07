@@ -1,4 +1,4 @@
-﻿Public Class Query
+﻿Public MustInherit Class Query
 
     Private sql As Object = ""
     Private t As Object = ""

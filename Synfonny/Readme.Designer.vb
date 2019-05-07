@@ -157,7 +157,7 @@ Partial Class Readme
         'btnUpdate
         '
         Me.btnUpdate.Enabled = False
-        Me.btnUpdate.Location = New System.Drawing.Point(256, 397)
+        Me.btnUpdate.Location = New System.Drawing.Point(245, 396)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
         Me.btnUpdate.TabIndex = 14

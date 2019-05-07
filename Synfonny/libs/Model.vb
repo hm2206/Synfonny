@@ -29,24 +29,30 @@
     End Function
 
     Protected Function concat(ByVal obj1() As Object, ByVal obj2() As Object) As Object()
-        Dim newObj(obj1.Length + obj1.Length) As Object
-        Dim iter As Object = 0
-        Dim limite As Object = 0
-        For Each o As Object In obj1
-            newObj(iter) = obj1(limite)
-            iter += 1
-            limite += 1
-        Next
+        Try
+            Dim newObj((obj1.Length + obj2.Length) - 1) As Object
 
-        limite = 0
+            Dim iter As Object = 0
+            Dim limite As Object = 0
+            For Each o As Object In obj1
+                newObj(iter) = obj1(limite)
+                iter += 1
+                limite += 1
+            Next
 
-        For Each o As Object In obj2
-            newObj(iter) = obj2(limite)
-            iter += 1
-            limite += 1
-        Next
+            limite = 0
 
-        Return newObj
+            For Each o As Object In obj2
+                newObj(iter) = obj2(limite)
+                iter += 1
+                limite += 1
+            Next
+
+            Return newObj
+        Catch ex As Exception
+            Console.WriteLine(ex)
+            Return Nothing
+        End Try
     End Function
 
     'SENTENCIAS

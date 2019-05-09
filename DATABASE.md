@@ -71,15 +71,12 @@ End Class
   #### Obtener registros de la tabla users
   
   _Generamos la consulta para mostrar todos los registros de la tabla "users" <br/> 
-  Con los métodos **all()** y **gets** los cuales retornan un **DataTable**_
+  Con el método **gets** el cual retornan un **DataTable**_
   ##### VB
      
 ```vb
 
    Dim db As New DB()
-   db.table("users").all()
-  
-   'También se puede de esta manera
    db.table("users").gets()
    
    'También se puede definir que atributos se va a obtener
@@ -105,8 +102,6 @@ End Class
      
   ##### SQL
 ```sql
-
-  SELECT * FROM users; #all()
   
   SELECT * FROM users; #gets()
    
@@ -275,7 +270,7 @@ End Class
   
 ```
 
-* Por norma de la clase **Model**, esta espera que como llave primaria de la tabla, sea ``` id ``` de caso contrario, la consulta no se realizarán como se esperba
+* Por norma de la clase **Model**, esta espera que como llave primaria de la tabla, sea ` id ` de caso contrario, la consulta no se realizarán como se esperba
 * También es posible configurar el nombre de la llave primaria, para hacerlo solo se debe agregar un atributo publico con en nombre de ***primaryKey*** y con un valor inicial
 ```vb
   
@@ -364,6 +359,21 @@ modificando la consulta antes de ser ejecutada.*
 ***attr() as Object** : acá se recibe los atributos de la tabla* <br/>
 ***val() as Object**: acá se recibe los valores que serán insertados en los **attr*** <br/>
 *El método **create(params)** retorna un **Boolean**, True si la operación es exitosa y **False** si hubo algún problema*
+
+> !el método `create` injecta automaticamente los campos **created_at** y **updated_at**
+> ejemplo : 
+##### VB
+```vb
+  Dim  user As New User()
+  user.create({"name", "edad"}, {"Hans", 19})
+ ```
+
+##### SQL
+```sql
+  INSERT INTO users("name", "edad", "created_at", "updated_at") VALUES("Hans", 19, NOW, NOW)
+```
+
+>Para configurar  desactivar estos campo
 
 *Ejemplo: (Utilizaremos la clase **Item**, el cual hereda la clase **Model**)*
 

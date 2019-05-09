@@ -25,7 +25,7 @@
         Dim u As Map = User.first()
 
         Me.val.prepared({txtName.Text}, {"name"})
-        Me.val.verifyBy({"name"}, {"required"})
+        Me.val.verifyBy({"name"}, {"required|number"})
 
         If Me.val.nextTo Then
             u.update({"name"}, {Me.txtName.Text})

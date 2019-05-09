@@ -35,12 +35,15 @@ Public Class Validate
     End Function
 
     Public Function verify(ByVal input As Object, ByVal tag As Object, ByVal validates() As Object) As Boolean
+        Dim resultado As Boolean = False
         For Each method As Object In validates
             If Me.invokeValidate(method, {input, tag}) Then
-                Return True
+                resultado = True
+            Else
+                resultado = False
             End If
         Next
-        Return False
+        Return resultado
     End Function
 
 

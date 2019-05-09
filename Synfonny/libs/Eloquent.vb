@@ -30,6 +30,7 @@ Public MustInherit Class Eloquent
 
     Protected Sub setTable(ByVal obj As Object)
         Me.table = obj
+        Me.db.table(Me.table)
     End Sub
 
     'Tabla por default
